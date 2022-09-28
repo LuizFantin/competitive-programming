@@ -4,25 +4,15 @@ using namespace std;
 
 
 int checkIfMeetOccured(long long initialAliceX, long long initialAliceY, long long initialBobX, long long initialBobY, long long stepAliceX, long long stepAliceY, long long stepBobX, long long stepBobY){
-  long long time = 0;
-  long long currentAliceX = initialAliceX;
-  long long currentAliceY = initialAliceY;
-  long long currentBobX = initialBobX;
-  long long currentBobY = initialBobY;
+  long long i = 0;
 
-  while(currentAliceX < currentBobX && currentAliceY < currentBobY){
-    if(currentAliceX == currentBobX && currentAliceY == currentBobY){
-      return time;
-    }
-
-    currentAliceX += stepAliceX;
-    currentAliceY += stepAliceY;
-    currentBobX -= stepBobX;
-    currentBobY -= stepBobY;
-    time += 1;
+  while(1){
+    if(initialAliceX + stepAliceX*i > initialBobX - stepBobX*i && initialAliceY + stepAliceY*i > initialBobY - stepBobY*i)
+      return -1;
+    if(initialAliceX + stepAliceX*i == initialBobX - stepBobX*i && initialAliceY + stepAliceY*i == initialBobY - stepBobY*i)
+      return i;
+    i++;
   }
-
-  return -1;
 }
 
 int main() {
