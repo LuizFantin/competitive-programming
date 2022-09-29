@@ -12,9 +12,8 @@ int main() {
     sumMissingNumber += data[i];
   }
 
-  for(int i = 1; i <= length; i++) {
-    sumLength += i;
-  }
+  sumLength = (length*(1 + length))/2;
+  
 
   cout << sumLength - sumMissingNumber;
   
