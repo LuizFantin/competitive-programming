@@ -33,3 +33,5 @@ cr
 *.exe
 *.out
 *.app
+
+.vscode
