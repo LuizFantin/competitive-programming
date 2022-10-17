@@ -56,7 +56,6 @@ int main() {
     vector<bool> sieve = sieveOfEratosthenes(MAX_TAM);
     vll primes = generateOrderedPrimeArray(MAX_TAM, sieve);
 
-    char acentoA = 160;
     ll n;
     ll i;
     ll j;
