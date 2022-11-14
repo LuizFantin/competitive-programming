@@ -41,12 +41,13 @@ private:
     void propagate(ll p, ll L, ll R) {
         if (marked[p]) {
             // O valor do nó será: número de elementos que esse intervalo representa vezes o novo valor de cada elemento do intervalo
-            st[p] = lazy[p] * (R - L + 1);
+            st[p] = st[p] + lazy[p];
             if (L != R) {
                 lazy[filhoDir(p)] = lazy[filhoEsq(p)] = lazy[p];
                 marked[filhoDir(p)] = marked[filhoEsq(p)] = true;
             }
             marked[p] = false;
+            lazy[p] = 0;
         }
     }
 
@@ -135,7 +136,6 @@ int main() {
     cin >> q;
 
     vll data(n);
-    vll ans;
 
     for(auto &i : data){
         cin >> i;
@@ -147,18 +147,17 @@ int main() {
         cin >> type;
         if(type == 2){
             cin >> k;
-            ans.push_back(st.query(k-1, k-1));
+            cout << st.query(k-1, k-1) << endl;
         }
         else{
             cin >> a;
             cin >> b;
             cin >> u;
+
+            st.update(a-1, b-1, u);
         }
     }
 
-    for (auto i: ans){
-        cout << i << endl;
-    }
 
     // cout << st.query(0, 4) << "\n";   // 5
     // cout << st.query(5, 9) << "\n";   // 0
