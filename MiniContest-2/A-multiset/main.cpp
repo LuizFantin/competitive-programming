@@ -40,16 +40,41 @@ int main() {
         tickets.insert(input);
     }
 
-    for(ll i = 0; i < m; i++){
+    for(ll j = 0; j < m; j++){
         ll clientPrice;
         cin >> clientPrice;
 
-        auto currentTicket = tickets.lower_bound(clientPrice);
-        if(currentTicket != tickets.end()){
-            tickets.erase(tickets.find(*currentTicket));
+        if(tickets.size() == 0){
+            cout << -1 << endl;
+            continue;
         }
-        cout << *currentTicket << endl;
+
+        auto currentTicket = tickets.lower_bound(clientPrice);
+
+        if(*currentTicket == clientPrice){
+            cout << (*currentTicket) << endl;
+            tickets.erase(currentTicket);
+            continue;
+        }
+
+        --currentTicket;
+       
+        if(currentTicket != tickets.end()){
+            
+            if(*currentTicket < clientPrice){
+                cout << (*currentTicket) << endl;
+                tickets.erase(currentTicket);
+                continue;
+            }
+            else{
+                cout << -1 << endl;
+            }
+        }
+        else{
+            cout << -1 << endl;
+        }
     }
+    
 
 
     return 0;
